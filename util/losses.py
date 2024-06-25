@@ -1,25 +1,31 @@
-import torch
 import torch.nn.functional as F
-
+import torch
 
 def scale_and_shift_invariant_loss(y_pred, y_true):
     """
+    scale and shift invariant loss
+
     params:
     y_pred (torch.Tensor):
-    y_true (torch.Tensor):
+    y_true (torch.LongTensor):
 
     return:
-    torch.Tensor: scale shift invariant loss
+    torch.Tensor: scale and shift invariant loss
     """
+    # convert to one-hot
+    y_true_onehot = F.one_hot(y_true, num_classes=y_pred.size(1)).float()
 
-    loss = torch.abs(y_pred - y_true)
+    # compute mean & std
+    y_pred_mean = y_pred.mean(dim=1, keepdim=True)
+    y_pred_std = y_pred.std(dim=1, keepdim=True)
+    y_true_mean = y_true_onehot.mean(dim=1, keepdim=True)
+    y_true_std = y_true_onehot.std(dim=1, keepdim=True)
 
-    # l2 norm
-    norm = torch.norm(y_pred, p=2, dim=1, keepdim=True)
+    # compute scale and shift invariant loss
+    loss = F.mse_loss((y_pred - y_pred_mean) / (y_pred_std + 1e-8),
+                      (y_true_onehot - y_true_mean) / (y_true_std + 1e-8))
 
-    l_ssi = torch.mean(loss / norm)
-
-    return l_ssi
+    return loss
 
 
 
@@ -37,9 +43,12 @@ def gradient_matching_loss(y_pred, y_true):
     y_true_onehot = F.one_hot(y_true, num_classes=y_pred.size(1)).float()
     y_true_onehot = y_true_onehot.detach().requires_grad_()
 
+    y_pred = y_pred.float()
+
+    # compute gradiant
     grad_pred = torch.autograd.grad(y_pred.sum(), y_pred, create_graph=True)[0]
     grad_true = torch.autograd.grad(y_true_onehot.sum(), y_true_onehot, create_graph=True)[0]
 
-    # compute L1 loss
+    # compute l1_loss
     l_gm = F.l1_loss(grad_pred, grad_true)
     return l_gm

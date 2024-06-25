@@ -17,29 +17,25 @@ from timm.models import create_model
 
 
 
-## python onnx_export.py --model vit_base_patch16_224 ./vit_base_patch16_224.onnx
+## python onnx_export.py --model dptv2_vits ./dptv2_vits.onnx
 
 parser = argparse.ArgumentParser(description='PyTorch ONNX Deployment')
 parser.add_argument('--output', metavar='ONNX_FILE', default=None, type=str,
                     help='output model filename')
 
 # Model & dataset params
-parser.add_argument('--model', type=str, default='vit_base_patch16_224',
+parser.add_argument('--model', type=str, default='dptv2_vits',
                     choices=[
-                        'vit_e_patch14_224_in21k', 'vit_Giant_patch14_224_in21k', 'vit_giant_patch14_224_in21k',
-                        'vit_Giant_patch14_384_in21k', 'vit_e_patch14_588_in21k', 'vit_e_patch14_384_in21k',
-                        'vit_giant_patch14_384_in21k', 'vit_large_patch32_224_in21k', 'vit_huge_patch14_224_in21k'
-                        'vit_base_patch16_224', 'vit_base_patch16_224_in21k', 'vit_base_patch32_224_in21k',
-                        'vit_base_patch32_224', 'vit_large_patch16_224', 'vit_large_patch16_224_in21k',
+                        'dptv2_vits', 'dptv2_vitb', 'dptv2_vitl', 'dptv2_vitg'
                     ],
-                    help='model architecture (default: vit_base_patch16_224)')
-parser.add_argument('--checkpoint', default='./output/vit_base_patch16_224_best_checkpoint.pth', type=str, metavar='PATH',
+                    help='model architecture (default: dptv2_vits)')
+parser.add_argument('--checkpoint', default='./output/dptv2_vits_best_model.pth', type=str, metavar='PATH',
                     help='path to checkpoint (default: none)')
 parser.add_argument('--batch-size', default=1, type=int,
                     metavar='N', help='mini-batch size (default: 1)')
-parser.add_argument('--img-size', default=224, type=int,
+parser.add_argument('--img-size', default=518, type=int,
                     metavar='N', help='Input image dimension, uses model default if empty')
-parser.add_argument('--nb-classes', type=int, default=5,
+parser.add_argument('--nb-classes', type=int, default=19,
                     help='Number classes in dataset')
 
 parser.add_argument('--opset', type=int, default=10,
