@@ -3,9 +3,9 @@
 ### This is a warehouse for Depth-Anything-V2-Pytorch-model, can be used to train your image-datasets for segmentation tasks.
 ### The code mainly come from [official source code](https://github.com/DepthAnything/Depth-Anything-V2)  
 
-### [Depth Anything V2](https://arxiv.org/abs/2406.09414)  
+### [Depth Anything V2 Paper](https://arxiv.org/abs/2406.09414)  
 
-![image](https://github.com/CUHK-AIM-Group/U-KAN/blob/main/assets/framework-1.png)  
+![image](https://github.com/jiaowoguanren0615/DepthAnythingV2/blob/main/sample_png/1719319320772.jpg)  
 
 ## Preparation
 ### Create conda virtual-environment
