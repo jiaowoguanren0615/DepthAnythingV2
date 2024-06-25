@@ -64,6 +64,7 @@ class DinoVisionTransformer(nn.Module):
             num_register_tokens=0,
             interpolate_antialias=False,
             interpolate_offset=0.1,
+            **kwargs
     ):
         """
         Args:

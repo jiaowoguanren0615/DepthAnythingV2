@@ -1,5 +1,6 @@
 import cv2
 import torch
+import os
 import torch.nn as nn
 import torch.nn.functional as F
 from torchvision.transforms import Compose
@@ -172,6 +173,7 @@ class DepthAnythingV2(nn.Module):
             out_channels=[256, 512, 1024, 1024],
             use_bn=False,
             use_clstoken=False,
+            encoder_pretrain_weights=None,
             **kwargs
     ):
         super(DepthAnythingV2, self).__init__()
@@ -187,6 +189,15 @@ class DepthAnythingV2(nn.Module):
         # encoder model
         self.pretrained = DINOv2(model_name=encoder)
 
+        if encoder_pretrain_weights is not None:
+            assert os.path.exists(encoder_pretrain_weights), 'You must download the pretrain weights at https://huggingface.co/junjiexv/dinov2_vit/tree/main'
+
+            weights = torch.load(encoder_pretrain_weights)
+            self.pretrained.load_state_dict(weights)
+            print(f'Successfully load encoder: {encoder} weights')
+
+            for param in self.pretrained.parameters():
+                param.requires_grad = False
 
         # decoder model
         self.depth_head = DPTHead(self.pretrained.embed_dim, num_classes, features, use_bn, out_channels=out_channels,

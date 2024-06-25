@@ -116,6 +116,7 @@ def get_args_parser():
     # Finetuning params
     parser.add_argument('--finetune', default='',
                         help='finetune from checkpoint')
+    parser.add_argument('--encoder_pretrain_weights', type=str, default='/mnt/d/PythonCode/DPT/DepthAnythingV2/dinov2_vits14_pretrain.pth')
     parser.add_argument('--freeze_layers', type=bool, default=True, help='freeze layers')
     parser.add_argument('--set_bn_eval', action='store_true', default=False,
                         help='set BN layers to eval mode during finetuning.')
@@ -192,6 +193,7 @@ def main(args):
     model = create_model(
         args.model,
         num_classes=args.nb_classes,
+        encoder_pretrain_weights=args.encoder_pretrain_weights,
         args=args
     )
 
