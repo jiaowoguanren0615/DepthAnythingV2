@@ -114,7 +114,7 @@ def get_args_parser():
 
 
     # Finetuning params
-    parser.add_argument('--finetune', default='./depth_anything_v2_vits.pth',  ## ./depth_anything_v2_vits.pth
+    parser.add_argument('--finetune', default='',
                         help='finetune from checkpoint')
     parser.add_argument('--freeze_layers', type=bool, default=True, help='freeze layers')
     parser.add_argument('--set_bn_eval', action='store_true', default=False,
