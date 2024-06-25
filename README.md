@@ -34,7 +34,7 @@ conda env create -f environment.yml
     ├──other_files: Construct lr_schedulers (cosine_lr, poly_lr, multistep_lr, etc)
 ├── util:
     ├── distributed_utils.py: Record various indicator information and output and distributed environment
-    ├── losses.py: DiceLoss
+    ├── losses.py: scale_and_shift_invariant_loss & gradient_matching_loss
     ├── metrics.py: Define Metrics (pixel_acc, f1score, miou)
 ├── engine.py: Function code for a training/validation process
 ├── estimate_model.py: Visualized of pretrained model in validset
