@@ -190,6 +190,18 @@ def main(args):
     valloader = DataLoader(valid_set, batch_size=args.val_batch_size, num_workers=args.num_workers,
                            drop_last=True, pin_memory=args.pin_mem, sampler=sampler_val)
 
+
+    # print('===========')
+    # for a, b in trainloader:
+    #     print(a.size())
+    #     print(b.size())
+    #     break
+    #
+    # for a, b in valloader:
+    #     print(a.size())
+    #     print(b.size())
+    #     break
+
     model = create_model(
         args.model,
         num_classes=args.nb_classes,
