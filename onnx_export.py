@@ -73,7 +73,7 @@ def main():
         # exportable=True
     )
 
-    model.load_state_dict(torch.load(args.checkpoint)['model'])
+    model.load_state_dict(torch.load(args.checkpoint)['model_state'])
     model.eval()
 
     example_input = torch.randn((args.batch_size, 3, args.img_size or 224, args.img_size or 224), requires_grad=True)
@@ -98,7 +98,7 @@ def main():
     else:
         export_type = torch.onnx.OperatorExportTypes.ONNX
 
-    torch_out = torch.onnx._export(
+    torch_out = torch.onnx.dynamo_export(
         model, example_input, args.output, export_params=True, verbose=True, input_names=input_names,
         output_names=output_names, keep_initializers_as_inputs=args.keep_init, dynamic_axes=dynamic_axes,
         opset_version=args.opset, operator_export_type=export_type)
