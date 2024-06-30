@@ -38,13 +38,13 @@ def get_args_parser():
     parser.add_argument("--dataset", type=str, default='cityscapes',
                         choices=['cityscapes', 'voc'])
     parser.add_argument("--image_size", type=int, default=518, help="input size")
-    parser.add_argument("--ignore_label", type=int, default=255, help="the dataset ignore_label")
-    parser.add_argument("--ignore_index", type=int, default=255, help="the dataset ignore_index")
+    parser.add_argument("--ignore_label", type=int, default=255, help="the datasets ignore_label")
+    parser.add_argument("--ignore_index", type=int, default=255, help="the datasets ignore_index")
     parser.add_argument('--data_len', default=5000, type=int,
                         help='count of your entire data_set. For example: Cityscapes 5000, voc 11530')
     parser.add_argument('--nb_classes', default=19, type=int,
                         choices=[19, 21],
-                        help='number classes of your dataset')
+                        help='number classes of your datasets')
 
     parser.add_argument('--batch-size', default=4, type=int)
     parser.add_argument("--val_batch_size", type=int, default=1, help='batch size for validation (default: 1)')

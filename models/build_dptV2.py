@@ -167,7 +167,7 @@ class DPTHead(nn.Module):
 class DepthAnythingV2(nn.Module):
     def __init__(
             self,
-            num_classes=19,  ## for cityscapes, modify this param according your own dataset
+            num_classes=19,  ## for cityscapes, modify this param according your own datasets
             encoder='vitl',
             features=256,
             out_channels=[256, 512, 1024, 1024],

@@ -22,7 +22,7 @@ parser = argparse.ArgumentParser(description='Pytorch ONNX Validation')
 parser.add_argument("--data_root", type=str, default='/mnt/d/CityScapesDataset',
                         help="path to CityScapesDataset Dataset")
 parser.add_argument('--nb-classes', type=int, default=19,
-                    help='Number classes in dataset')
+                    help='Number classes in datasets')
 parser.add_argument('--onnx-input', default='./dptv2_vits_optim.onnx', type=str, metavar='PATH',
                     help='path to onnx model/weights file')
 parser.add_argument('--onnx-output-opt', default='', type=str, metavar='PATH',
@@ -36,9 +36,9 @@ parser.add_argument('--batch-size', default=4, type=int,
 parser.add_argument('--image_size', default=518, type=int,
                     metavar='N', help='Input image dimension, uses model default if empty')
 parser.add_argument('--mean', type=float, nargs='+', default=None, metavar='MEAN',
-                    help='Override mean pixel value of dataset')
+                    help='Override mean pixel value of datasets')
 parser.add_argument('--std', type=float,  nargs='+', default=None, metavar='STD',
-                    help='Override std deviation of of dataset')
+                    help='Override std deviation of of datasets')
 parser.add_argument('--crop-pct', type=float, default=None, metavar='PCT',
                     help='Override default crop pct of 0.875')
 parser.add_argument('--interpolation', default='', type=str, metavar='NAME',

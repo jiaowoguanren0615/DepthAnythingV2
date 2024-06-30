@@ -74,10 +74,10 @@ class VOCSegmentation(data.Dataset):
     """`Pascal VOC <http://host.robots.ox.ac.uk/pascal/VOC/>`_ Segmentation Dataset.
     Args:
         root (string): Root directory of the VOC Dataset.
-        year (string, optional): The dataset year, supports years 2007 to 2012.
+        year (string, optional): The datasets year, supports years 2007 to 2012.
         image_set (string, optional): Select the image_set to use, ``train``, ``trainval`` or ``val``
-        download (bool, optional): If true, downloads the dataset from the internet and
-            puts it in root directory. If dataset is already downloaded, it is not
+        download (bool, optional): If true, downloads the datasets from the internet and
+            puts it in root directory. If datasets is already downloaded, it is not
             downloaded again.
         transform (callable, optional): A function/transform that  takes in an PIL image
             and returns a transformed version. E.g, ``transforms.RandomCrop``

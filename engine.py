@@ -42,7 +42,7 @@ def train_one_epoch(model, optimizer, dataloader,
     header = 'Epoch: [{}]'.format(epoch)
 
     if args.nb_classes == 2:
-        # TODO set CrossEntropy loss-weights for object & background according to your dataset
+        # TODO set CrossEntropy loss-weights for object & background according to your datasets
         loss_weight = torch.as_tensor([1.0, 2.0], device=device)
     else:
         loss_weight = None

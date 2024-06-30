@@ -23,8 +23,8 @@ def get_argparser():
                         default='/mnt/d/CityScapesDataset/leftImg8bit/val/frankfurt/',
                         help="path to a single image or image directory")
     parser.add_argument("--nb_classes", type=int, default=19, choices=[19, 21],
-                        help='19 for cityscapes, 21 for voc dataset')
-    parser.add_argument("--dataset", type=str, default='cityscapes',
+                        help='19 for cityscapes, 21 for voc datasets')
+    parser.add_argument("--datasets", type=str, default='cityscapes',
                         choices=['voc', 'cityscapes'], help='Name of training set')
 
 

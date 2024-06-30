@@ -16,7 +16,7 @@ def build_dataset(args):
         ])
 
         val_transform = et.ExtCompose([
-            et.ExtResize(args.image_size, args.image_size),
+            et.ExtResize(args.image_size),
             et.ExtCenterCrop(args.image_size),
             et.ExtToTensor(),
             et.ExtNormalize(mean=[0.485, 0.456, 0.406],
@@ -40,7 +40,7 @@ def build_dataset(args):
         ])
 
         val_transform = et.ExtCompose([
-            et.ExtResize(args.image_size, args.image_size),
+            et.ExtResize(args.image_size),
             et.ExtToTensor(),
             et.ExtNormalize(mean=[0.485, 0.456, 0.406],
                             std=[0.229, 0.224, 0.225]),
